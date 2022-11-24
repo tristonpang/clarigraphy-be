@@ -23,7 +23,7 @@ app.get('/products', async (req, res) => {
   try {
     const products = await Product.getProducts();
     res.status(200).send(products);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send(err.message);
   }
 });
@@ -38,7 +38,7 @@ app.post('/products', jsonParser, async (req, res) => {
     } else {
       res.status(500).send("Failure");
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(400).send(err.message);
   }
 });
@@ -55,7 +55,7 @@ app.put('/products/:id', jsonParser, async (req, res) => {
     } else {
       res.status(304).send("Failure");
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(400).send(err.message);
   }
 });
@@ -72,7 +72,7 @@ app.delete('/products/:id', async (req, res) => {
     } else if (!result.deletedCount) {
         res.status(404).send(`Game with id ${id} does not exist`);
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(400).send(err.message);
   }
 });
@@ -82,7 +82,7 @@ app.get('/orders', async (req, res) => {
   try {
     const orders = await Order.getOrders();
     res.status(200).send(orders);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).send(err.message);
   }
 });
@@ -97,7 +97,7 @@ app.post('/orders', jsonParser, async (req, res) => {
     } else {
       res.status(500).send("Failure");
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(400).send(err.message);
   }
 });
