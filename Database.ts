@@ -30,6 +30,7 @@ export default class Database {
 
   static getInstance() {
     if (!Database.instance) {
+      console.log('database initialised');
       Database.instance = new Database();
     }
     return Database.instance;
