@@ -4,10 +4,13 @@ import dotenv from 'dotenv';
 import Product, { ProductTemplate } from './Product';
 import bodyParser from 'body-parser';
 import Order, { OrderTemplate } from './Order';
+const cors = require('cors')
 
 dotenv.config();
 
 const app: Express = express();
+
+app.use(cors())
 
 const jsonParser = bodyParser.json();
 
@@ -89,6 +92,7 @@ app.get('/orders', async (req, res) => {
 
 app.post('/orders', jsonParser, async (req, res) => {
   try {
+    console.log(req.body)
     const { customerName, address, email, phone, orderDetails } = req.body as OrderTemplate;
     const newOrder = new Order(customerName, address, email, phone, orderDetails);
     const result = await newOrder.createOrder();
